@@ -1,4 +1,5 @@
 require 'httprecognizer/constants'
+require 'httprecognizer/version'
 require 'deque'
 
 # Parent expected to provide following API:
