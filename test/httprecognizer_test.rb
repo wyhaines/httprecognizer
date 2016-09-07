@@ -7,7 +7,7 @@ class HttpRecognizerTest < Minitest::Test
 
   def test_it_detects_everything_from_one_big_chunk
     content = "This is a test.\n"
-    http = "GET /index.html HTTP/1.1\r\nHost: test.devnull.com\r\nContent-Length: #{content.length}\r\nContant-Type: text/plain\r\n\r\n#{content}"
+    http = "GET /index.html HTTP/1.1\r\nHost: test.devnull.com\r\nConnection: Keep-Alive\r\nEtag: ab788a046ac8c135891669d8531d6fa9\r\n\r\n#{content}"
     rec = ::HttpRecognizer.new
 
     assert !rec.done_parsing?
@@ -24,7 +24,7 @@ class HttpRecognizerTest < Minitest::Test
 
   def test_it_detects_everything_from_many_small_chunks
     content = "This is a test.\n"
-    http = "GET /index.html HTTP/1.1\r\nHost: test.devnull.com\r\nContent-Length: #{content.length}\r\nContant-Type: text/plain\r\n\r\n#{content}"
+    http = "GET /index.html HTTP/1.1\r\nHost: test.devnull.com\r\nConnection: Keep-Alive\r\nEtag: ab788a046ac8c135891669d8531d6fa9\r\n\r\n#{content}"
     http_chunks = http.scan(/......../m)
 
     rec = ::HttpRecognizer.new
