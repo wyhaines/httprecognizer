@@ -131,7 +131,7 @@ class HttpRecognizer
       if d.include?(Crnrn)
         @name = ( @webserver.respond_to?(:default_name) && @webserver.respond_to?(:known_name?) ) ?
           ( @webserver.known_name?(@name) ? @name : @webserver.default_name ) :
-          @name
+          @name || ''
         if d =~ /If-None-Match: *([^\r]+)/
           @none_match = $1
         end
